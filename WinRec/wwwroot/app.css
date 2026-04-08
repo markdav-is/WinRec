@@ -1,101 +1,117 @@
+/* =========================================================
+   WinRec – Space: 1999 Dark Theme
+   Colour palette inspired by Moon Base Alpha:
+     · Deep space black/navy backgrounds
+     · Alpha orange / amber accents
+     · Warm-white text
+   ========================================================= */
+
+:root {
+    --bg-primary:    #0d0d14;
+    --bg-panel:      #13131f;
+    --bg-card:       #1a1a2a;
+    --bg-card-hover: #202035;
+    --orange:        #ff8c00;
+    --orange-dim:    #c86a00;
+    --amber:         #ffa500;
+    --gold:          #c8960c;
+    --text-primary:  #e8e4d0;
+    --text-dim:      #7a7468;
+    --text-label:    #a09880;
+    --green:         #30c050;
+    --red:           #e03030;
+    --border:        #2a2a40;
+    --border-bright: #3a3a58;
+    --glow-orange:   rgba(255, 140, 0, 0.35);
+    --glow-red:      rgba(220, 50, 50, 0.40);
+    --glow-green:    rgba(48, 192, 80, 0.35);
+}
+
+/* Reset / Base */
+*, *::before, *::after { box-sizing: border-box; }
+
 html, body {
-    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    margin: 0; padding: 0;
+    height: 100%; width: 100%;
+    background: var(--bg-primary);
+    color: var(--text-primary);
+    font-family: 'Segoe UI', 'Trebuchet MS', Arial, sans-serif;
+    font-size: 14px;
+    line-height: 1.5;
+    overflow: hidden;
 }
 
-a, .btn-link {
-    color: #006bb7;
+a, .btn-link { color: var(--amber); }
+
+/* Scrollbar */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--bg-panel); }
+::-webkit-scrollbar-thumb { background: var(--border-bright); border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: var(--orange-dim); }
+
+/* Typography */
+h1, h2, h3 {
+    font-family: 'Trebuchet MS', 'Segoe UI Semibold', Arial, sans-serif;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--text-primary);
+    margin: 0;
 }
 
-.btn-primary {
-    color: #fff;
-    background-color: #1b6ec2;
-    border-color: #1861ac;
+.mono {
+    font-family: 'Courier New', 'Lucida Console', monospace;
+    letter-spacing: 0.06em;
 }
 
-.btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
-  box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
-}
-
-.content {
-    padding-top: 1.1rem;
-}
-
-h1:focus {
-    outline: none;
-}
-
-.valid.modified:not([type=checkbox]) {
-    outline: 1px solid #26b050;
-}
-
-.invalid {
-    outline: 1px solid #e50000;
-}
-
-.validation-message {
-    color: #e50000;
-}
-
+/* Blazor error UI */
 #blazor-error-ui {
-    color-scheme: light only;
-    background: lightyellow;
-    bottom: 0;
-    box-shadow: 0 -1px 2px rgba(0, 0, 0, 0.2);
+    color-scheme: dark;
+    background: #2a0a0a;
+    border-top: 2px solid var(--red);
+    color: var(--text-primary);
+    bottom: 0; left: 0;
     box-sizing: border-box;
     display: none;
-    left: 0;
-    padding: 0.6rem 1.25rem 0.7rem 1.25rem;
+    padding: 0.6rem 1.25rem 0.7rem;
     position: fixed;
     width: 100%;
     z-index: 1000;
 }
-
-    #blazor-error-ui .dismiss {
-        cursor: pointer;
-        position: absolute;
-        right: 0.75rem;
-        top: 0.5rem;
-    }
+#blazor-error-ui .dismiss { cursor: pointer; position: absolute; right: 0.75rem; top: 0.5rem; }
 
 .blazor-error-boundary {
-    background: url(data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNTYiIGhlaWdodD0iNDkiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIG92ZXJmbG93PSJoaWRkZW4iPjxkZWZzPjxjbGlwUGF0aCBpZD0iY2xpcDAiPjxyZWN0IHg9IjIzNSIgeT0iNTEiIHdpZHRoPSI1NiIgaGVpZ2h0PSI0OSIvPjwvY2xpcFBhdGg+PC9kZWZzPjxnIGNsaXAtcGF0aD0idXJsKCNjbGlwMCkiIHRyYW5zZm9ybT0idHJhbnNsYXRlKC0yMzUgLTUxKSI+PHBhdGggZD0iTTI2My41MDYgNTFDMjY0LjcxNyA1MSAyNjUuODEzIDUxLjQ4MzcgMjY2LjYwNiA1Mi4yNjU4TDI2Ny4wNTIgNTIuNzk4NyAyNjcuNTM5IDUzLjYyODMgMjkwLjE4NSA5Mi4xODMxIDI5MC41NDUgOTIuNzk1IDI5MC42NTYgOTIuOTk2QzI5MC44NzcgOTMuNTEzIDI5MSA5NC4wODE1IDI5MSA5NC42NzgyIDI5MSA5Ny4wNjUxIDI4OS4wMzggOTkgMjg2LjYxNyA5OUwyNDAuMzgzIDk5QzIzNy45NjMgOTkgMjM2IDk3LjA2NTEgMjM2IDk0LjY3ODIgMjM2IDk0LjM3OTkgMjM2LjAzMSA5NC4wODg2IDIzNi4wODkgOTMuODA3MkwyMzYuMzM4IDkzLjAxNjIgMjM2Ljg1OCA5Mi4xMzE0IDI1OS40NzMgNTMuNjI5NCAyNTkuOTYxIDUyLjc5ODUgMjYwLjQwNyA1Mi4yNjU4QzI2MS4yIDUxLjQ4MzcgMjYyLjI5NiA1MSAyNjMuNTA2IDUxWk0yNjMuNTg2IDY2LjAxODNDMjYwLjczNyA2Ni4wMTgzIDI1OS4zMTMgNjcuMTI0NSAyNTkuMzEzIDY5LjMzNyAyNTkuMzEzIDY5LjYxMDIgMjU5LjMzMiA2OS44NjA4IDI1OS4zNzEgNzAuMDg4N0wyNjEuNzk1IDg0LjAxNjEgMjY1LjM4IDg0LjAxNjEgMjY3LjgyMSA2OS43NDc1QzI2Ny44NiA2OS43MzA5IDI2Ny44NzkgNjkuNTg3NyAyNjcuODc5IDY5LjMxNzkgMjY3Ljg3OSA2Ny4xMTgyIDI2Ni40NDggNjYuMDE4MyAyNjMuNTg2IDY2LjAxODNaTTI2My41NzYgODYuMDU0N0MyNjEuMDQ5IDg2LjA1NDcgMjU5Ljc4NiA4Ny4zMDA1IDI1OS43ODYgODkuNzkyMSAyNTkuNzg2IDkyLjI4MzcgMjYxLjA0OSA5My41Mjk1IDI2My41NzYgOTMuNTI5NSAyNjYuMTE2IDkzLjUyOTUgMjY3LjM4NyA5Mi4yODM3IDI2Ny4zODcgODkuNzkyMSAyNjcuMzg3IDg3LjMwMDUgMjY2LjExNiA4Ni4wNTQ3IDI2My41NzYgODYuMDU0N1oiIGZpbGw9IiNGRkU1MDAiIGZpbGwtcnVsZT0iZXZlbm9kZCIvPjwvZz48L3N2Zz4=) no-repeat 1rem/1.8rem, #b32121;
-    padding: 1rem 1rem 1rem 3.7rem;
-    color: white;
+    background: #1a0808;
+    border: 1px solid var(--red);
+    border-radius: 4px;
+    padding: 1rem;
+    color: var(--text-primary);
+}
+.blazor-error-boundary::after { content: "A system error has occurred. Please restart."; }
+
+/* Utility */
+.text-orange  { color: var(--orange); }
+.text-amber   { color: var(--amber); }
+.text-dim     { color: var(--text-dim); }
+.text-green   { color: var(--green); }
+.text-red     { color: var(--red); }
+.text-label   { color: var(--text-label); font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.12em; }
+
+.panel {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 4px;
 }
 
-    .blazor-error-boundary::after {
-        content: "An error has occurred."
-    }
+.panel-bright { border-color: var(--border-bright); }
 
-.darker-border-checkbox.form-check-input {
-    border-color: #929292;
+/* corner-accent decoration */
+.corner-accent { position: relative; }
+.corner-accent::before, .corner-accent::after {
+    content: '';
+    position: absolute;
+    width: 8px; height: 8px;
+    border-color: var(--orange-dim);
+    border-style: solid;
 }
-
-.form-floating > .form-control-plaintext::placeholder, .form-floating > .form-control::placeholder {
-    color: var(--bs-secondary-color);
-    text-align: end;
-}
-
-.form-floating > .form-control-plaintext:focus::placeholder, .form-floating > .form-control:focus::placeholder {
-    text-align: start;
-}
-
-.status-bar-safe-area {
-    display: none;
-}
-
-@supports (-webkit-touch-callout: none) {
-    .status-bar-safe-area {
-        display: flex;
-        position: sticky;
-        top: 0;
-        height: env(safe-area-inset-top);
-        background-color: #f7f7f7;
-        width: 100%;
-        z-index: 1;
-    }
-
-    .flex-column, .navbar-brand {
-        padding-left: env(safe-area-inset-left);
-    }
-}
+.corner-accent::before { top: -1px; left: -1px; border-width: 2px 0 0 2px; }
+.corner-accent::after  { bottom: -1px; right: -1px; border-width: 0 2px 2px 0; }
